@@ -9,14 +9,15 @@ QT       += core gui network
 TARGET = XboxSDKAPI
 TEMPLATE = app
 
+SOURCES     += main.cpp\
+                xboxsdk.cpp
 
-SOURCES += main.cpp\
-        xboxsdk.cpp
+HEADERS     += xboxsdk.h
 
-HEADERS  += xboxsdk.h
-
-FORMS    += xboxsdk.ui
+FORMS       += xboxsdk.ui
 
 INCLUDEPATH += c:/qjson/include
 
-LIBS    += -Lc:/qjson/lib -lqjson
+LIBS        += -Lc:/qjson/lib -lqjson
+
+RC_FILE     = xboxsdk.rc

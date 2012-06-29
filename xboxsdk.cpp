@@ -13,7 +13,6 @@ XboxSDK::XboxSDK(QWidget *parent) : QMainWindow(parent), ui(new Ui::XboxSDK), m_
     QList<QString> headers;
     headers << "ID" << "Profile ID";
     ui->tblProfiles->setHorizontalHeaderLabels(headers);
-    ui->tblProfiles->horizontalHeaderItem(0)->
 
     // connect our signal for our finished slot
     connect(m_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinsihed(QNetworkReply*)));

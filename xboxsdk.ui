@@ -10,8 +10,30 @@
     <height>418</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>569</width>
+    <height>418</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>569</width>
+    <height>418</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>XboxSDK</string>
+   <string>XboxSDK C++ Example</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.ico</normaloff>icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -30,7 +52,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideLeft</enum>
@@ -222,9 +244,15 @@
       <property name="sortingEnabled">
        <bool>true</bool>
       </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
       <property name="columnCount">
        <number>2</number>
       </property>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
@@ -248,24 +276,6 @@
       </property>
       <property name="placeholderText">
        <string>API Key</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>Example Download</string>
-     </attribute>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>72</x>
-        <y>88</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Query API</string>
       </property>
      </widget>
     </widget>

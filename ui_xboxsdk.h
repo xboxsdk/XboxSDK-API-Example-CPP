@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'xboxsdk.ui'
 **
-** Created: Fri Jun 29 14:36:34 2012
+** Created: Fri Jun 29 15:17:59 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -47,8 +47,6 @@ public:
     QPushButton *btnFetchProfiles;
     QTableWidget *tblProfiles;
     QLineEdit *txtAPIKey;
-    QWidget *tab_3;
-    QPushButton *pushButton;
     QGroupBox *groupBox;
     QListWidget *dbgOut;
     QGroupBox *groupBox_3;
@@ -59,6 +57,16 @@ public:
         if (XboxSDK->objectName().isEmpty())
             XboxSDK->setObjectName(QString::fromUtf8("XboxSDK"));
         XboxSDK->resize(569, 418);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(XboxSDK->sizePolicy().hasHeightForWidth());
+        XboxSDK->setSizePolicy(sizePolicy);
+        XboxSDK->setMinimumSize(QSize(569, 418));
+        XboxSDK->setMaximumSize(QSize(569, 418));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8("icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        XboxSDK->setWindowIcon(icon);
         centralWidget = new QWidget(XboxSDK);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -116,19 +124,15 @@ public:
         tblProfiles->setGeometry(QRect(8, 40, 529, 145));
         tblProfiles->setGridStyle(Qt::DotLine);
         tblProfiles->setSortingEnabled(true);
+        tblProfiles->setCornerButtonEnabled(false);
         tblProfiles->setColumnCount(2);
+        tblProfiles->horizontalHeader()->setStretchLastSection(true);
         tblProfiles->verticalHeader()->setVisible(false);
         tblProfiles->verticalHeader()->setHighlightSections(false);
         txtAPIKey = new QLineEdit(tab_2);
         txtAPIKey->setObjectName(QString::fromUtf8("txtAPIKey"));
         txtAPIKey->setGeometry(QRect(104, 10, 369, 20));
         tabWidget->addTab(tab_2, QString());
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QString::fromUtf8("tab_3"));
-        pushButton = new QPushButton(tab_3);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(72, 88, 75, 23));
-        tabWidget->addTab(tab_3, QString());
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(8, 296, 553, 113));
@@ -153,7 +157,7 @@ public:
 
         retranslateUi(XboxSDK);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(XboxSDK);
@@ -161,7 +165,7 @@ public:
 
     void retranslateUi(QMainWindow *XboxSDK)
     {
-        XboxSDK->setWindowTitle(QApplication::translate("XboxSDK", "XboxSDK", 0, QApplication::UnicodeUTF8));
+        XboxSDK->setWindowTitle(QApplication::translate("XboxSDK", "XboxSDK C++ Example", 0, QApplication::UnicodeUTF8));
         groupBox_2->setTitle(QApplication::translate("XboxSDK", "User Credentials", 0, QApplication::UnicodeUTF8));
         txtPassword->setInputMask(QString());
         txtPassword->setText(QString());
@@ -180,8 +184,6 @@ public:
         txtAPIKey->setText(QApplication::translate("XboxSDK", "TEST_KEY", 0, QApplication::UnicodeUTF8));
         txtAPIKey->setPlaceholderText(QApplication::translate("XboxSDK", "API Key", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("XboxSDK", "Example Profiles", 0, QApplication::UnicodeUTF8));
-        pushButton->setText(QApplication::translate("XboxSDK", "Query API", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("XboxSDK", "Example Download", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("XboxSDK", "API Output", 0, QApplication::UnicodeUTF8));
         groupBox_3->setTitle(QApplication::translate("XboxSDK", "API Selection", 0, QApplication::UnicodeUTF8));
         comboBox->clear();
