@@ -27,12 +27,13 @@ public slots:
     
 private slots:
     void on_btnLogin_clicked();
+    void on_btnLogout_clicked();
 
 private:
     Ui::XboxSDK *ui;
     QNetworkAccessManager *m_manager;
+    QNetworkReply *m_reply;
     QJson::Parser *m_parser;
-    bool m_authed;
 
 };
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'xboxsdk.ui'
 **
-** Created: Fri Jun 29 10:33:19 2012
+** Created: Fri Jun 29 12:23:56 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -39,7 +39,8 @@ public:
     QPushButton *btnReset;
     QGroupBox *grpLoginInfo;
     QPushButton *btnLogout;
-    QLabel *label;
+    QLabel *lblUsername;
+    QLabel *lblEmail;
     QWidget *tab_2;
     QWidget *tab_3;
     QPushButton *pushButton;
@@ -89,9 +90,12 @@ public:
         btnLogout = new QPushButton(grpLoginInfo);
         btnLogout->setObjectName(QString::fromUtf8("btnLogout"));
         btnLogout->setGeometry(QRect(440, 72, 75, 23));
-        label = new QLabel(grpLoginInfo);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(8, 24, 57, 16));
+        lblUsername = new QLabel(grpLoginInfo);
+        lblUsername->setObjectName(QString::fromUtf8("lblUsername"));
+        lblUsername->setGeometry(QRect(8, 24, 289, 16));
+        lblEmail = new QLabel(grpLoginInfo);
+        lblEmail->setObjectName(QString::fromUtf8("lblEmail"));
+        lblEmail->setGeometry(QRect(8, 48, 265, 16));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -140,7 +144,8 @@ public:
         btnReset->setText(QApplication::translate("XboxSDK", "Reset", 0, QApplication::UnicodeUTF8));
         grpLoginInfo->setTitle(QApplication::translate("XboxSDK", "User Info", 0, QApplication::UnicodeUTF8));
         btnLogout->setText(QApplication::translate("XboxSDK", "Logout", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("XboxSDK", "Username:", 0, QApplication::UnicodeUTF8));
+        lblUsername->setText(QApplication::translate("XboxSDK", "Username:", 0, QApplication::UnicodeUTF8));
+        lblEmail->setText(QApplication::translate("XboxSDK", "Email:", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("XboxSDK", "Example Login", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("XboxSDK", "Example Profiles", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("XboxSDK", "Query API", 0, QApplication::UnicodeUTF8));

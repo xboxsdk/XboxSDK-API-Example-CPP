@@ -64,8 +64,8 @@ void XboxSDK::query_api(QString uri_string)
     ui->dbgOut->addItem(QString("API Call: %1").arg(uri_string));
 
     // run our web request
-    QNetworkReply *reply = m_manager->get(QNetworkRequest(uri));
-    reply->ignoreSslErrors();
+    m_reply = m_manager->get(QNetworkRequest(uri));
+    m_reply->ignoreSslErrors();
 }
 // -------------------------------------------------------------------------------
 
@@ -121,12 +121,41 @@ void XboxSDK::on_btnLogin_clicked()
 
     // query the API
     query_api( QString("https://xboxsdk.com/api/login/%1/%2/xboxsdk/true").arg(username, password) );
+
+    // sit tight while we process that request.
+    QEventLoop eventLoop;
+    connect(m_reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+    eventLoop.exec();
+
+    // was the login successful?
+    if (m_res.value("success").toBool())
+    {
+        // map our user data
+        QVariantMap userdata = m_res.value("data").toMap();
+
+        ui->lblUsername->setText( QString("Username: %1").arg(userdata.value("user_name").toString()) );
+        ui->lblEmail->setText( QString("Email: %1").arg(userdata.value("user_email").toString()) );
+        ui->grpLoginInfo->show();
+    }
+}
+// -------------------------------------------------------------------------------
+
+/**
+ * on_btnLogout_clicked()
+ */
+void XboxSDK::on_btnLogout_clicked()
+{
+    ui->lblUsername->clear();
+    ui->lblEmail->clear();
+    ui->grpLoginInfo->hide();
+
+    ui->txtUsername->clear();
+    ui->txtPassword->clear();
 }
 // -------------------------------------------------------------------------------
 
 // ===============================================================================
 //  PRIVATE FUNCTIONS
 // ===============================================================================
-
 
 
