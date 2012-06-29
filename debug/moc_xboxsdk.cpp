@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'xboxsdk.h'
 **
-** Created: Fri Jun 29 12:29:31 2012
+** Created: Fri Jun 29 14:13:32 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_XboxSDK[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,6 +34,8 @@ static const uint qt_meta_data_XboxSDK[] = {
        9,    8,    8,    8, 0x0a,
       41,    8,    8,    8, 0x08,
       63,    8,    8,    8, 0x08,
+      86,    8,    8,    8, 0x08,
+     108,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -41,6 +43,8 @@ static const uint qt_meta_data_XboxSDK[] = {
 static const char qt_meta_stringdata_XboxSDK[] = {
     "XboxSDK\0\0requestFinsihed(QNetworkReply*)\0"
     "on_btnLogin_clicked()\0on_btnLogout_clicked()\0"
+    "on_btnReset_clicked()\0"
+    "on_btnFetchProfiles_clicked()\0"
 };
 
 const QMetaObject XboxSDK::staticMetaObject = {
@@ -75,9 +79,11 @@ int XboxSDK::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: requestFinsihed((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 1: on_btnLogin_clicked(); break;
         case 2: on_btnLogout_clicked(); break;
+        case 3: on_btnReset_clicked(); break;
+        case 4: on_btnFetchProfiles_clicked(); break;
         default: ;
         }
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

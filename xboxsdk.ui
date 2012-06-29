@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>569</width>
-    <height>361</height>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>8</x>
-      <y>8</y>
+      <y>64</y>
       <width>553</width>
       <height>225</height>
      </rect>
@@ -30,7 +30,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideLeft</enum>
@@ -194,6 +194,62 @@
      <attribute name="title">
       <string>Example Profiles</string>
      </attribute>
+     <widget class="QPushButton" name="btnFetchProfiles">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>8</y>
+        <width>89</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fetch Profiles</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tblProfiles">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>40</y>
+        <width>529</width>
+        <height>145</height>
+       </rect>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::DotLine</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+      <column/>
+      <column/>
+     </widget>
+     <widget class="QLineEdit" name="txtAPIKey">
+      <property name="geometry">
+       <rect>
+        <x>104</x>
+        <y>10</y>
+        <width>369</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TEST_KEY</string>
+      </property>
+      <property name="placeholderText">
+       <string>API Key</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -218,7 +274,7 @@
     <property name="geometry">
      <rect>
       <x>8</x>
-      <y>239</y>
+      <y>296</y>
       <width>553</width>
       <height>113</height>
      </rect>
@@ -259,6 +315,39 @@
      <property name="flow">
       <enum>QListView::TopToBottom</enum>
      </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>8</y>
+      <width>553</width>
+      <height>49</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>API Selection</string>
+    </property>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>16</y>
+       <width>521</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>http://sandbox.xboxsdk.com/api/</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>https://xboxsdk.com/api/</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>

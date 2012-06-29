@@ -28,6 +28,8 @@ public slots:
 private slots:
     void on_btnLogin_clicked();
     void on_btnLogout_clicked();
+    void on_btnReset_clicked();
+    void on_btnFetchProfiles_clicked();
 
 private:
     Ui::XboxSDK *ui;

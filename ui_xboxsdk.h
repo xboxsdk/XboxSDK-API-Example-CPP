@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'xboxsdk.ui'
 **
-** Created: Fri Jun 29 12:23:56 2012
+** Created: Fri Jun 29 14:36:34 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QComboBox>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -22,6 +23,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QPushButton>
 #include <QtGui/QTabWidget>
+#include <QtGui/QTableWidget>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -42,21 +44,26 @@ public:
     QLabel *lblUsername;
     QLabel *lblEmail;
     QWidget *tab_2;
+    QPushButton *btnFetchProfiles;
+    QTableWidget *tblProfiles;
+    QLineEdit *txtAPIKey;
     QWidget *tab_3;
     QPushButton *pushButton;
     QGroupBox *groupBox;
     QListWidget *dbgOut;
+    QGroupBox *groupBox_3;
+    QComboBox *comboBox;
 
     void setupUi(QMainWindow *XboxSDK)
     {
         if (XboxSDK->objectName().isEmpty())
             XboxSDK->setObjectName(QString::fromUtf8("XboxSDK"));
-        XboxSDK->resize(569, 361);
+        XboxSDK->resize(569, 418);
         centralWidget = new QWidget(XboxSDK);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(8, 8, 553, 225));
+        tabWidget->setGeometry(QRect(8, 64, 553, 225));
         tabWidget->setTabPosition(QTabWidget::South);
         tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setElideMode(Qt::ElideLeft);
@@ -99,6 +106,22 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        btnFetchProfiles = new QPushButton(tab_2);
+        btnFetchProfiles->setObjectName(QString::fromUtf8("btnFetchProfiles"));
+        btnFetchProfiles->setGeometry(QRect(8, 8, 89, 23));
+        tblProfiles = new QTableWidget(tab_2);
+        if (tblProfiles->columnCount() < 2)
+            tblProfiles->setColumnCount(2);
+        tblProfiles->setObjectName(QString::fromUtf8("tblProfiles"));
+        tblProfiles->setGeometry(QRect(8, 40, 529, 145));
+        tblProfiles->setGridStyle(Qt::DotLine);
+        tblProfiles->setSortingEnabled(true);
+        tblProfiles->setColumnCount(2);
+        tblProfiles->verticalHeader()->setVisible(false);
+        tblProfiles->verticalHeader()->setHighlightSections(false);
+        txtAPIKey = new QLineEdit(tab_2);
+        txtAPIKey->setObjectName(QString::fromUtf8("txtAPIKey"));
+        txtAPIKey->setGeometry(QRect(104, 10, 369, 20));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
@@ -108,7 +131,7 @@ public:
         tabWidget->addTab(tab_3, QString());
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(8, 239, 553, 113));
+        groupBox->setGeometry(QRect(8, 296, 553, 113));
         dbgOut = new QListWidget(groupBox);
         dbgOut->setObjectName(QString::fromUtf8("dbgOut"));
         dbgOut->setGeometry(QRect(8, 16, 537, 89));
@@ -120,11 +143,17 @@ public:
         dbgOut->setAlternatingRowColors(true);
         dbgOut->setMovement(QListView::Free);
         dbgOut->setFlow(QListView::TopToBottom);
+        groupBox_3 = new QGroupBox(centralWidget);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(8, 8, 553, 49));
+        comboBox = new QComboBox(groupBox_3);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setGeometry(QRect(16, 16, 521, 22));
         XboxSDK->setCentralWidget(centralWidget);
 
         retranslateUi(XboxSDK);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(XboxSDK);
@@ -147,10 +176,19 @@ public:
         lblUsername->setText(QApplication::translate("XboxSDK", "Username:", 0, QApplication::UnicodeUTF8));
         lblEmail->setText(QApplication::translate("XboxSDK", "Email:", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("XboxSDK", "Example Login", 0, QApplication::UnicodeUTF8));
+        btnFetchProfiles->setText(QApplication::translate("XboxSDK", "Fetch Profiles", 0, QApplication::UnicodeUTF8));
+        txtAPIKey->setText(QApplication::translate("XboxSDK", "TEST_KEY", 0, QApplication::UnicodeUTF8));
+        txtAPIKey->setPlaceholderText(QApplication::translate("XboxSDK", "API Key", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("XboxSDK", "Example Profiles", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("XboxSDK", "Query API", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("XboxSDK", "Example Download", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("XboxSDK", "API Output", 0, QApplication::UnicodeUTF8));
+        groupBox_3->setTitle(QApplication::translate("XboxSDK", "API Selection", 0, QApplication::UnicodeUTF8));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("XboxSDK", "http://sandbox.xboxsdk.com/api/", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("XboxSDK", "https://xboxsdk.com/api/", 0, QApplication::UnicodeUTF8)
+        );
     } // retranslateUi
 
 };
