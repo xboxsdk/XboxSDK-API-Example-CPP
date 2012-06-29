@@ -1,6 +1,9 @@
 #include "xboxsdk.h"
 #include "ui_xboxsdk.h"
 
+/**
+ * construct
+ */
 XboxSDK::XboxSDK(QWidget *parent) : QMainWindow(parent), ui(new Ui::XboxSDK), m_manager(new QNetworkAccessManager(this)), m_parser(new QJson::Parser)
 {
     ui->setupUi(this);
@@ -9,27 +12,19 @@ XboxSDK::XboxSDK(QWidget *parent) : QMainWindow(parent), ui(new Ui::XboxSDK), m_
     // connect our signal for our finished slot
     connect(m_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinsihed(QNetworkReply*)));
 }
+// -------------------------------------------------------------------------------
 
+/**
+ * destruct
+ * pick up after yourself!
+ */
 XboxSDK::~XboxSDK()
 {
-    // clean up our mess
     delete m_parser;
     delete m_manager;
     delete ui;
 }
-
-void XboxSDK::query_api(QString uri_string)
-{
-    // build our query uri
-    QUrl uri(uri_string);
-
-    // debug output
-    ui->dbgOut->addItem(QString("API Call: %1").arg(uri_string));
-
-    // run our web request
-    QNetworkReply *reply = m_manager->get(QNetworkRequest(uri));
-    reply->ignoreSslErrors();
-}
+// -------------------------------------------------------------------------------
 
 // ===============================================================================
 //  PUBLIC SLOTS
@@ -50,6 +45,29 @@ void XboxSDK::requestFinsihed(QNetworkReply *reply)
     // parse our json XboxSDK API response
     parse_jsondata(json_data);
 }
+// -------------------------------------------------------------------------------
+
+// ===============================================================================
+//  PUBLIC FUNCTIONS
+// ===============================================================================
+
+/**
+ * query_api()
+ * function sets up the API URI and makes the call
+ */
+void XboxSDK::query_api(QString uri_string)
+{
+    // build our query uri
+    QUrl uri(uri_string);
+
+    // debug output
+    ui->dbgOut->addItem(QString("API Call: %1").arg(uri_string));
+
+    // run our web request
+    QNetworkReply *reply = m_manager->get(QNetworkRequest(uri));
+    reply->ignoreSslErrors();
+}
+// -------------------------------------------------------------------------------
 
 /**
  * parse_jsondata()
@@ -84,12 +102,15 @@ void XboxSDK::parse_jsondata(QByteArray jsondata)
     ui->dbgOut->addItem("-------------------------------------------");
     ui->dbgOut->addItem("");
 }
+// -------------------------------------------------------------------------------
 
-void XboxSDK::toggle_logged(bool logged)
-{
-    //ui->grpLoginInfo->enabledChange(logged);
-}
+// ===============================================================================
+//  PRIVATE SLOTS
+// ===============================================================================
 
+/**
+ * on_btnLogin_clicked()
+ */
 void XboxSDK::on_btnLogin_clicked()
 {
     // uri for this via the api is
@@ -101,3 +122,11 @@ void XboxSDK::on_btnLogin_clicked()
     // query the API
     query_api( QString("https://xboxsdk.com/api/login/%1/%2/xboxsdk/true").arg(username, password) );
 }
+// -------------------------------------------------------------------------------
+
+// ===============================================================================
+//  PRIVATE FUNCTIONS
+// ===============================================================================
+
+
+

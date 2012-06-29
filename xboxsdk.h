@@ -17,12 +17,9 @@ class XboxSDK : public QMainWindow
     
 public:
     QVariantMap m_res;
-
     explicit XboxSDK(QWidget *parent = 0);
     ~XboxSDK();
-
     void parse_jsondata(QByteArray);
-
     void query_api(QString);
 
 public slots:
@@ -35,12 +32,7 @@ private:
     Ui::XboxSDK *ui;
     QNetworkAccessManager *m_manager;
     QJson::Parser *m_parser;
-
-    bool logged_in;
-
-
-
-    void toggle_logged(bool);
+    bool m_authed;
 
 };
 
