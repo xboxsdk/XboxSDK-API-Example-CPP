@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'xboxsdk.h'
 **
-** Created: Thu Jun 28 21:14:45 2012
+** Created: Fri Jun 29 10:21:27 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -39,7 +39,7 @@ static const uint qt_meta_data_XboxSDK[] = {
 
 static const char qt_meta_stringdata_XboxSDK[] = {
     "XboxSDK\0\0requestFinsihed(QNetworkReply*)\0"
-    "on_pushButton_clicked()\0"
+    "on_btnLogin_clicked()\0"
 };
 
 const QMetaObject XboxSDK::staticMetaObject = {
@@ -72,7 +72,7 @@ int XboxSDK::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: requestFinsihed((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
-        case 1: on_pushButton_clicked(); break;
+        case 1: on_btnLogin_clicked(); break;
         default: ;
         }
         _id -= 2;

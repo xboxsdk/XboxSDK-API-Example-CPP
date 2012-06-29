@@ -1,48 +1,70 @@
 #include "xboxsdk.h"
 #include "ui_xboxsdk.h"
 
-XboxSDK::XboxSDK(QWidget *parent) : QMainWindow(parent), ui(new Ui::XboxSDK), m_manager(new QNetworkAccessManager(this))
+XboxSDK::XboxSDK(QWidget *parent) : QMainWindow(parent), ui(new Ui::XboxSDK), m_manager(new QNetworkAccessManager(this)), m_parser(new QJson::Parser)
 {
     ui->setupUi(this);
+    ui->grpLoginInfo->hide();
+
+    // connect our signal for our finished slot
+    connect(m_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinsihed(QNetworkReply*)));
 }
 
 XboxSDK::~XboxSDK()
 {
+    // clean up our mess
+    delete m_parser;
+    delete m_manager;
     delete ui;
 }
 
-void XboxSDK::on_pushButton_clicked()
+void XboxSDK::query_api(QString uri_string)
 {
-    // connect our signal for our finished slot
-    connect(m_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinsihed(QNetworkReply*)));
+    // build our query uri
+    QUrl uri(uri_string);
 
-    // build our uri
-    QUrl uri("http://sandbox.xboxsdk.com/api/user/TEST_KEY");
+    // debug output
+    ui->dbgOut->addItem(QString("API Call: %1").arg(uri_string));
 
-    // make our web request
-    m_manager->get(QNetworkRequest(uri));
+    // run our web request
+    QNetworkReply *reply = m_manager->get(QNetworkRequest(uri));
+    reply->ignoreSslErrors();
 }
 
+// ===============================================================================
+//  PUBLIC SLOTS
+// ===============================================================================
+
+/**
+ * requestFinished()
+ */
 void XboxSDK::requestFinsihed(QNetworkReply *reply)
 {
     // read our reply data
     //QString json_data( reply->readAll() );
     QByteArray json_data = reply->readAll();
 
+    // debug output
+    ui->dbgOut->addItem( QString("response: %1").arg( QString(json_data) ) );
+
     // parse our json XboxSDK API response
     parse_jsondata(json_data);
 }
 
+/**
+ * parse_jsondata()
+ * function will do two main things, first it will make sure the data we have gotten back can be parsed as json
+ * next it will then break the data into the first pass "success", "data" and/or "error"
+ *
+ * parsed data is stored in m_res a public variable of type QVariantMap
+ */
 void XboxSDK::parse_jsondata(QByteArray jsondata)
 {
-    // create our json parser
-    QJson::Parser parser;
-
     // bool to make sure parse was successfull
     bool parse_ok;
 
     // try and parse our json data
-    QVariantMap res = parser.parse(jsondata, &parse_ok).toMap();
+    m_res = m_parser->parse(jsondata, &parse_ok).toMap();
 
     // check to make sure parse was successfull
     if (!parse_ok)
@@ -52,14 +74,30 @@ void XboxSDK::parse_jsondata(QByteArray jsondata)
     }
 
     // now that data is checked we ca see what the API said!
-    if (!(res.value("success").toBool()))
+    if (!(m_res.value("success").toBool()))
     {
-        QMessageBox::warning(this, "Error", res.value("error").toString());
-        exit(1);
+        QMessageBox::warning(this, "Error", m_res.value("error").toString());
     }
 
-    QVariantMap data_items = res["data"].toMap();
-    foreach (QString key, data_items.keys())
-        ui->listWidget->addItem( QString("%1:\t\t %2").arg(key, data_items.value(key).toString()) );
+    // debug output
+    ui->dbgOut->addItem("Json response from API parsed successfully.");
+    ui->dbgOut->addItem("-------------------------------------------");
+    ui->dbgOut->addItem("");
+}
 
+void XboxSDK::toggle_logged(bool logged)
+{
+    //ui->grpLoginInfo->enabledChange(logged);
+}
+
+void XboxSDK::on_btnLogin_clicked()
+{
+    // uri for this via the api is
+    // https://xboxsdk.com/api/login/<username>/<password>/[type]/[hashed]
+
+    QString username = ui->txtUsername->text();
+    QString password = QString( QCryptographicHash::hash(ui->txtPassword->text().toAscii(), QCryptographicHash::Sha1) ).toAscii().toHex();
+
+    // query the API
+    query_api( QString("https://xboxsdk.com/api/login/%1/%2/xboxsdk/true").arg(username, password) );
 }
